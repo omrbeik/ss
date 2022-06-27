@@ -4,56 +4,32 @@ import PackageDescription
 
 let package = Package(
   name: "SwifterSwift",
+  platforms: [.iOS(.v11), .macOS(.v10_12), .tvOS(.v12), .watchOS(.v7)],
   products: [
     .library(
       name: "SwifterSwift",
-      targets: [
-        "SwifterSwift/Foundation",
-        "SwifterSwift/UIKit"
-      ]
+      targets: ["SwifterSwiftFoundation", "SwifterSwiftUIKit"]
     ),
     .library(
-      name: "SwifterSwift/Foundation",
-      targets: ["SwifterSwift/Foundation"]
+      name: "SwifterSwiftFoundation",
+      targets: ["SwifterSwiftFoundation"]
     ),
     .library(
-      name: "SwifterSwift/UIKit",
-      targets: ["SwifterSwift/UIKit"]
+      name: "SwifterSwiftUIKit",
+      targets: ["SwifterSwiftUIKit"]
     ),
   ],
   dependencies: [],
   targets: [
-    .target(name: "Foundation", sources: ["Foundation"]),
-    .testTarget(name: "Foundation"),
-    .target(name: "UIKit", sources: ["UIKit"]),
+    .target(
+      name: "SwifterSwiftFoundation",
+      dependencies: [],
+      path: "Sources/Foundation"
+    ),
+    .target(
+      name: "SwifterSwiftUIKit",
+      dependencies: [],
+      path: "Sources/UIKit"
+    ),
   ]
 )
-
-extension Target {
-  static func target(
-    name: String,
-    sources: [String]
-  )
-  -> Target {
-    return .target(
-      name: "SwifterSwift/\(name)",
-      path: "Sources",
-      sources: sources
-    )
-  }
-}
-
-extension Target {
-  static func testTarget(
-    name: String
-  )
-  -> Target {
-    return .testTarget(
-      name: "SwifterSwift/\(name)_Tests",
-      dependencies: [
-        .target(name: "SwifterSwift/\(name)")
-      ],
-      path: "Tests"
-    )
-  }
-}
