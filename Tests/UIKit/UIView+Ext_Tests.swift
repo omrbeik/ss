@@ -1,4 +1,4 @@
-import SwifterSwift_Foundation
+import SwifterSwiftFoundation
 import XCTest
 
 final class UIViewTests: XCTestCase {

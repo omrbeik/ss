@@ -8,26 +8,31 @@ let package = Package(
   products: [
     .library(
       name: "SwifterSwift",
-      targets: ["SwifterSwiftFoundationExt", "SwifterSwiftUIKitExt"]
+      targets: ["SwifterSwift"]
     ),
     .library(
       name: "SwifterSwiftFoundation",
-      targets: ["SwifterSwiftFoundationExt"]
+      targets: ["SwifterSwiftFoundation"]
     ),
     .library(
       name: "SwifterSwiftUIKit",
-      targets: ["SwifterSwiftUIKitExt"]
+      targets: ["SwifterSwiftUIKit"]
     ),
   ],
   dependencies: [],
   targets: [
     .target(
-      name: "SwifterSwiftFoundationExt",
+      name: "SwifterSwift",
+      dependencies: ["SwifterSwiftFoundation", "SwifterSwiftUIKit",],
+      path: "Sources/SwifterSwift"
+    ),
+    .target(
+      name: "SwifterSwiftFoundation",
       dependencies: [],
       path: "Sources/Foundation"
     ),
     .target(
-      name: "SwifterSwiftUIKitExt",
+      name: "SwifterSwiftUIKit",
       dependencies: [],
       path: "Sources/UIKit"
     ),
